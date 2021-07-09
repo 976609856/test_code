@@ -52,3 +52,5 @@ def
 		X1=decode_X(X0)
 		fitness =fitness_func(X1)
 		X2=select(X0,fitness)
+		X3=crossover(X2,c)
+		X4=mutation(X3,m)
