@@ -25,9 +25,15 @@ def decode_X(X:np.array):
 		X2[i,:]=np.array(x[i],y[i])
 	return X2
 
-def select(X,fitness):
-	
+def select(X,fitness):   #根据概率得到X的不同行
+	fitness=1/fitness
+	fitnesss=fitness/fitness.sum()
+	idx=np.array(list(range(X.shape[0])))
+	X2_inx=np.random.choice(idx,X.shape[0],p=fitness)
+	X2=X[X2_inx,:]
+	return X2
 
+def 
 
 
 
@@ -41,7 +47,7 @@ def select(X,fitness):
 	best_xy=[]
 	best_num=[]
 	iter_num=[]
-	x0=np.random.randint(0,2,(50,40)) #0,1矩阵
+	X0=np.random.randint(0,2,(50,40)) #0,1矩阵
 	for i in range(iter_num):
 		X1=decode_X(X0)
 		fitness =fitness_func(X1)
