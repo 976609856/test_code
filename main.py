@@ -4,8 +4,6 @@
 
 # Modifications : Modified the Printing method and added a few comments
 
-# Description   : This will scan the current directory and all subdirectories and display the size.
-
 import os
 import sys  # Load the library module and the sys module for the argument vector'''
 
