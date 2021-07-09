@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy import random
+from numpy.lib.function_base import select
 
 def fitness_func(X):
 	a=10
@@ -17,6 +18,16 @@ def decode(x,a,b):
 	return a+xt*(b-a)/(np.power(2,len(x))-1)
 
 def decode_X(X:np.array):
+	X2=np.zeros(X.shape[0],2)
+	for i in range(X.shape[0]):
+		x[i]=decode(X[i,:20],-5,5)
+		y[i]=decode(X[i,20:],-5,5)
+		X2[i,:]=np.array(x[i],y[i])
+	return X2
+
+def select(X,fitness):
+	
+
 
 
 
@@ -34,3 +45,4 @@ def decode_X(X:np.array):
 	for i in range(iter_num):
 		X1=decode_X(X0)
 		fitness =fitness_func(X1)
+		X2=select(X0,fitness)
