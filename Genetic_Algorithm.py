@@ -33,13 +33,26 @@ def select(X,fitness):   #根据概率得到X的不同行
 	X2=X[X2_inx,:]
 	return X2
 
-def 
+def crossover(X,c):
+	"""按顺序选择2个个体与概率c进行交叉操作"""
+	for i in range(0,X.shape[0],2):
+		xa=X[i,:]
+		xb=X[i+1,:]
+		for j in range(X.shape[1]):
+			if np.random.rand() <= c :
+				xa[j],xb[j]=xb[j],xa[j]
+		X[i,:]=xa
+		X[i+1,:]=xb
+	return X
 
+def mutation(X,m):
+	for i in range(X.shape[0]):
+		for j in range(X.shape[1]):
+			if np.random.rand() <= m:
+				X[i,j]=(X[i,j]+1)%2
+	return X
 
-
-
-
- ga():
+def ga():
 	"""变异操作"""
 	c=0.3
 	m=0.05
@@ -54,3 +67,15 @@ def
 		X2=select(X0,fitness)
 		X3=crossover(X2,c)
 		X4=mutation(X3,m)
+
+		X5=decode_X(X4)
+		fitness=fitness_func(X5)
+		best_finess.append(fitness.min())
+		x,y=X5[fitness.argmin()]
+		best_xy.append((x,y))
+		X0=X4
+	
+	print("最优解是：%.5f" % best_fitness[-1])
+	return 0
+
+ga()
